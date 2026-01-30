@@ -4,6 +4,8 @@
   <img src="https://img.shields.io/badge/Minecraft-1.21.1+-green?style=for-the-badge" alt="Minecraft Version">
   <img src="https://img.shields.io/badge/Java-21+-orange?style=for-the-badge" alt="Java Version">
   <img src="https://img.shields.io/badge/Paper-Compatible-blue?style=for-the-badge" alt="Paper">
+  <img src="https://img.shields.io/badge/Maven-3.9+-red?style=for-the-badge" alt="Maven">
+  <img src="https://img.shields.io/badge/Gradle-8.5+-02303A?style=for-the-badge" alt="Gradle">
   <img src="https://img.shields.io/badge/License-MIT-purple?style=for-the-badge" alt="License">
 </p>
 
@@ -197,12 +199,25 @@ Tous les fichiers de configuration sont dans `plugins/KaelisCore/`:
 # Cloner le repo
 git clone https://github.com/k4elis/KaelisCore.git
 cd KaelisCore
+```
 
+### Option 1: Avec Maven (pom.xml)
+```bash
+# Compiler avec Maven
+mvn clean package
+
+# Le JAR sera dans target/KaelisCore-1.0.0.jar
+```
+
+### Option 2: Avec Gradle (build.gradle.kts)
+```bash
 # Compiler avec Gradle
 ./gradlew build
 
 # Le JAR sera dans build/libs/
 ```
+
+> **Note**: Les deux méthodes produisent un JAR identique avec toutes les dépendances incluses (shaded/shadow JAR).
 
 ## 📋 Prérequis
 
