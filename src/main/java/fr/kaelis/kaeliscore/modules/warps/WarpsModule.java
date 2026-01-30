@@ -118,6 +118,11 @@ public class WarpsModule extends AbstractModule {
      */
     public CompletableFuture<Boolean> createWarp(String name, Location location, String permission, String category) {
         return CompletableFuture.supplyAsync(() -> {
+            if (location.getWorld() == null) {
+                plugin.getLogger().warning("Cannot create warp " + name + ": location has null world");
+                return false;
+            }
+            
             try (Connection conn = plugin.getDatabaseManager().getConnection();
                  PreparedStatement stmt = conn.prepareStatement(
                      "INSERT INTO kc_warps (name, world, x, y, z, yaw, pitch, permission, category) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",

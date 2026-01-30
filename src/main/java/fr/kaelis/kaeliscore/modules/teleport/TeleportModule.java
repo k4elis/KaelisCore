@@ -133,8 +133,8 @@ public class TeleportModule extends AbstractModule implements Listener {
             return;
         }
 
-        // Create request
-        TpaRequest request = new TpaRequest(requester.getUniqueId(), target.getUniqueId(), System.currentTimeMillis());
+        // Create request with configurable timeout
+        TpaRequest request = new TpaRequest(requester.getUniqueId(), target.getUniqueId(), System.currentTimeMillis(), tpaTimeout);
         tpaRequests.put(requester.getUniqueId(), request);
 
         plugin.getMessageManager().send(requester, "tpa.sent", "player", target.getName());
@@ -223,6 +223,7 @@ public class TeleportModule extends AbstractModule implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onPlayerTeleport(PlayerTeleportEvent event) {
+        // Save back location for non-plugin teleports (ender pearls, commands, etc.)
         if (event.getCause() != PlayerTeleportEvent.TeleportCause.PLUGIN) {
             saveBackLocation(event.getPlayer());
         }
@@ -301,9 +302,13 @@ public class TeleportModule extends AbstractModule implements Listener {
     /**
      * TPA Request record
      */
-    private record TpaRequest(UUID requester, UUID target, long timestamp) {
+    private record TpaRequest(UUID requester, UUID target, long timestamp, int timeoutSeconds) {
+        TpaRequest(UUID requester, UUID target, long timestamp) {
+            this(requester, target, timestamp, 60);
+        }
+        
         boolean isExpired() {
-            return System.currentTimeMillis() - timestamp > 60000; // 60 seconds
+            return System.currentTimeMillis() - timestamp > timeoutSeconds * 1000L;
         }
     }
 }

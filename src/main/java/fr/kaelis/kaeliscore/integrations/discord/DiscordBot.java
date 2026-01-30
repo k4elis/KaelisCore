@@ -35,6 +35,7 @@ public class DiscordBot extends ListenerAdapter {
     private String consoleChannelId;
     private String adminRoleId;
     private boolean enabled;
+    private long startTime;
     
     // Player linking
     private final Map<String, UUID> linkedAccounts = new HashMap<>();
@@ -42,6 +43,7 @@ public class DiscordBot extends ListenerAdapter {
 
     public DiscordBot(KaelisCore plugin) {
         this.plugin = plugin;
+        this.startTime = System.currentTimeMillis();
     }
 
     public void start() {
@@ -164,8 +166,8 @@ public class DiscordBot extends ListenerAdapter {
     }
     
     private String getUptime() {
-        // Simple approximation - in real implementation you'd track start time
-        long seconds = System.currentTimeMillis() / 1000;
+        long uptimeMillis = System.currentTimeMillis() - startTime;
+        long seconds = uptimeMillis / 1000;
         long hours = seconds / 3600;
         long minutes = (seconds % 3600) / 60;
         return hours + "h " + minutes + "m";

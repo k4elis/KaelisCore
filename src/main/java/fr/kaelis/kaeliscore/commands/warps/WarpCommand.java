@@ -99,7 +99,6 @@ public class WarpCommand extends BaseCommand {
                     ctx.close();
                     warpsModule.teleportToWarp(player, warpName);
                 });
-                inventory.setItem(slot, item);
 
                 slot++;
             }

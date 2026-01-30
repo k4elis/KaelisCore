@@ -60,7 +60,13 @@ public class EventsModule extends AbstractModule {
             if (eventConfig == null) continue;
 
             String typeStr = eventConfig.getString("type", "drop_party");
-            EventType type = EventType.valueOf(typeStr.toUpperCase());
+            EventType type;
+            try {
+                type = EventType.valueOf(typeStr.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                plugin.getLogger().warning("Invalid event type: " + typeStr + " for event " + eventId);
+                continue;
+            }
             List<String> times = eventConfig.getStringList("times");
             int duration = eventConfig.getInt("duration", 10);
             boolean enabled = eventConfig.getBoolean("enabled", true);

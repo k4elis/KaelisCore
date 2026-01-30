@@ -47,7 +47,12 @@ public class ClaimsModule extends AbstractModule implements Listener {
         claimBlocksPerHour = getConfig().getInt("claim-blocks-per-hour", 100);
         
         String toolName = getConfig().getString("claim-tool", "GOLDEN_SHOVEL");
-        claimTool = Material.valueOf(toolName);
+        try {
+            claimTool = Material.valueOf(toolName);
+        } catch (IllegalArgumentException e) {
+            plugin.getLogger().warning("Invalid claim tool material: " + toolName + ", using GOLDEN_SHOVEL");
+            claimTool = Material.GOLDEN_SHOVEL;
+        }
         
         // Register listener
         Bukkit.getPluginManager().registerEvents(this, plugin);
