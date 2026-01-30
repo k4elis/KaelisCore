@@ -1,0 +1,73 @@
+# Configuration des quêtes
+
+enabled: true
+
+quests:
+  mine_stone:
+    name: "Mineur débutant"
+    description: "Minez 100 blocs de pierre"
+    type: BREAK_BLOCK
+    target: STONE
+    amount: 100
+    repeatable: true
+    icon: STONE
+    rewards:
+      money: 50.0
+      xp: 100
+      items: []
+  
+  kill_zombies:
+    name: "Chasseur de zombies"
+    description: "Tuez 50 zombies"
+    type: KILL_MOB
+    target: ZOMBIE
+    amount: 50
+    repeatable: true
+    icon: ROTTEN_FLESH
+    rewards:
+      money: 100.0
+      xp: 200
+      items:
+        - "IRON_SWORD:1"
+  
+  fish_master:
+    name: "Maître pêcheur"
+    description: "Attrapez 25 poissons"
+    type: FISH
+    target: ""
+    amount: 25
+    repeatable: true
+    icon: FISHING_ROD
+    rewards:
+      money: 75.0
+      xp: 150
+      items:
+        - "COD:16"
+  
+  pvp_warrior:
+    name: "Guerrier PvP"
+    description: "Éliminez 10 joueurs"
+    type: KILL_PLAYER
+    target: ""
+    amount: 10
+    repeatable: false
+    icon: DIAMOND_SWORD
+    rewards:
+      money: 500.0
+      xp: 500
+      items:
+        - "GOLDEN_APPLE:4"
+  
+  mine_diamonds:
+    name: "Chercheur de diamants"
+    description: "Minez 20 minerais de diamant"
+    type: BREAK_BLOCK
+    target: DIAMOND_ORE
+    amount: 20
+    repeatable: true
+    icon: DIAMOND
+    rewards:
+      money: 200.0
+      xp: 300
+      items:
+        - "DIAMOND:5"

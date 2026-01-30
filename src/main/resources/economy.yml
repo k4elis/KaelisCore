@@ -1,0 +1,137 @@
+# Configuration de l'économie
+
+enabled: true
+
+# Devise
+currency:
+  symbol: "💰"
+  format: "#,##0.00"
+
+# Limites
+limits:
+  # Balance maximum
+  max-balance: 1000000000
+  # Transaction minimum
+  min-transaction: 0.01
+
+# Balance de départ pour les nouveaux joueurs
+starting-balance: 100.0
+
+# Shop
+shop:
+  categories:
+    blocks:
+      name: "Blocs"
+      icon: GRASS_BLOCK
+      items:
+        stone:
+          material: STONE
+          name: "Pierre"
+          buy-price: 2.0
+          sell-price: 0.5
+          amount: 64
+        cobblestone:
+          material: COBBLESTONE
+          name: "Cobblestone"
+          buy-price: 1.0
+          sell-price: 0.25
+          amount: 64
+        dirt:
+          material: DIRT
+          name: "Terre"
+          buy-price: 0.5
+          sell-price: 0.1
+          amount: 64
+        oak_log:
+          material: OAK_LOG
+          name: "Bûche de chêne"
+          buy-price: 5.0
+          sell-price: 1.5
+          amount: 64
+        glass:
+          material: GLASS
+          name: "Verre"
+          buy-price: 3.0
+          sell-price: 0.5
+          amount: 64
+    
+    ores:
+      name: "Minerais"
+      icon: DIAMOND
+      items:
+        coal:
+          material: COAL
+          name: "Charbon"
+          buy-price: 5.0
+          sell-price: 2.0
+          amount: 64
+        iron_ingot:
+          material: IRON_INGOT
+          name: "Lingot de fer"
+          buy-price: 15.0
+          sell-price: 5.0
+          amount: 64
+        gold_ingot:
+          material: GOLD_INGOT
+          name: "Lingot d'or"
+          buy-price: 50.0
+          sell-price: 15.0
+          amount: 64
+        diamond:
+          material: DIAMOND
+          name: "Diamant"
+          buy-price: 500.0
+          sell-price: 150.0
+          amount: 1
+        emerald:
+          material: EMERALD
+          name: "Émeraude"
+          buy-price: 200.0
+          sell-price: 75.0
+          amount: 1
+    
+    food:
+      name: "Nourriture"
+      icon: COOKED_BEEF
+      items:
+        bread:
+          material: BREAD
+          name: "Pain"
+          buy-price: 3.0
+          sell-price: 1.0
+          amount: 64
+        cooked_beef:
+          material: COOKED_BEEF
+          name: "Steak"
+          buy-price: 10.0
+          sell-price: 3.0
+          amount: 64
+        golden_apple:
+          material: GOLDEN_APPLE
+          name: "Pomme d'or"
+          buy-price: 1000.0
+          sell-price: 250.0
+          amount: 1
+    
+    tools:
+      name: "Outils"
+      icon: DIAMOND_PICKAXE
+      items:
+        diamond_pickaxe:
+          material: DIAMOND_PICKAXE
+          name: "Pioche en diamant"
+          buy-price: 2000.0
+          sell-price: 500.0
+          amount: 1
+        diamond_sword:
+          material: DIAMOND_SWORD
+          name: "Épée en diamant"
+          buy-price: 1500.0
+          sell-price: 400.0
+          amount: 1
+        diamond_axe:
+          material: DIAMOND_AXE
+          name: "Hache en diamant"
+          buy-price: 1800.0
+          sell-price: 450.0
+          amount: 1

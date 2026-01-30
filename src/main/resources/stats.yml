@@ -1,0 +1,22 @@
+# Configuration des statistiques
+
+enabled: true
+
+# Statistiques suivies
+tracked-stats:
+  - kills
+  - deaths
+  - mob_kills
+  - blocks_broken
+  - blocks_placed
+  - distance_walked
+  - items_crafted
+  - fish_caught
+  - trades
+  - logins
+
+# Synchronisation avec les stats vanilla
+sync-vanilla-stats: true
+
+# Intervalle de synchronisation (en secondes)
+sync-interval: 300

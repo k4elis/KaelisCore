@@ -1,0 +1,19 @@
+# Configuration des GUIs
+
+# Sons
+sounds:
+  click: "UI_BUTTON_CLICK"
+  open: "BLOCK_CHEST_OPEN"
+  close: "BLOCK_CHEST_CLOSE"
+  error: "ENTITY_VILLAGER_NO"
+  success: "ENTITY_PLAYER_LEVELUP"
+
+# Matériaux par défaut
+materials:
+  filler: GRAY_STAINED_GLASS_PANE
+  back: ARROW
+  close: BARRIER
+  next: ARROW
+  previous: ARROW
+  confirm: LIME_DYE
+  cancel: RED_DYE

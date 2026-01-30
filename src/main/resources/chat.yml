@@ -1,0 +1,24 @@
+# Configuration du chat
+
+enabled: true
+
+# Format du chat (supporte MiniMessage)
+# Placeholders: <player_name>, <player_displayname>, <player_prefix>, <player_suffix>, <message>
+format: "<player_prefix><white><player_name></white><player_suffix> <dark_gray>»</dark_gray> <gray><message>"
+
+# Autoriser les couleurs dans le chat (avec permission kaeliscore.chat.color)
+allow-colors: false
+
+# Autoriser le formatage (gras, italique, etc.)
+allow-formatting: false
+
+# Cooldown entre messages (en secondes, 0 = désactivé)
+cooldown: 0
+
+# Anti-spam activé
+anti-spam: true
+
+# Patterns bloqués (regex)
+blocked-patterns:
+  - "(?i)(discord\\.gg|discordapp\\.com)/[a-zA-Z0-9]+"
+  - "(?i)\\b[a-zA-Z0-9]+\\.(com|net|org|io|gg)\\b"

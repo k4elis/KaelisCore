@@ -1,0 +1,21 @@
+# Configuration de la base de données
+
+# Type de base de données: mysql, mariadb, sqlite
+type: sqlite
+
+# Configuration MySQL/MariaDB
+mysql:
+  host: localhost
+  port: 3306
+  database: kaeliscore
+  username: root
+  password: ""
+  ssl: false
+
+# Configuration du pool de connexions
+pool:
+  maximum-size: 10
+  minimum-idle: 2
+  connection-timeout: 30000
+  idle-timeout: 600000
+  max-lifetime: 1800000

@@ -1,0 +1,23 @@
+# Configuration Discord
+
+enabled: false
+
+# Token du bot Discord (à configurer)
+bot-token: "YOUR_BOT_TOKEN_HERE"
+
+# IDs des channels
+channels:
+  # Channel pour les messages du serveur
+  server: ""
+  # Channel pour la console (optionnel)
+  console: ""
+
+# ID du rôle admin (pour les commandes admin du bot)
+admin-role-id: ""
+
+# Messages
+messages:
+  server-start: "🟢 **Serveur démarré!**"
+  server-stop: "🔴 **Serveur arrêté!**"
+  player-join: "🟢 **{player}** a rejoint le serveur"
+  player-leave: "🔴 **{player}** a quitté le serveur"
