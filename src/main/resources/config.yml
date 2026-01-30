@@ -1,0 +1,14 @@
+# KaelisCore - Configuration Principale
+# Plugin survie complet pour serveurs Minecraft 1.21.1+
+
+# Paramètres généraux
+general:
+  # Langue (fr, en)
+  language: fr
+  # Activer les messages de débogage
+  debug: false
+
+# Serveur
+server:
+  # Nom du serveur (affiché dans les messages)
+  name: "Mon Serveur Survie"

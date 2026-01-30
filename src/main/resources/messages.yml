@@ -1,0 +1,104 @@
+# Messages KaelisCore
+# Supporte MiniMessage pour le formatage
+# https://docs.adventure.kyori.net/minimessage/format.html
+
+# Préfixe global
+prefix: "<gradient:#6366f1:#8b5cf6>[KaelisCore]</gradient> "
+
+# Messages généraux
+general:
+  player-only: "<red>Cette commande ne peut être utilisée que par un joueur!"
+  no-permission: "<red>Vous n'avez pas la permission d'utiliser cette commande!"
+  player-not-found: "<red>Joueur introuvable!"
+  invalid-number: "<red>Nombre invalide!"
+  reload-success: "<green>Configuration rechargée!"
+
+# Messages d'économie
+economy:
+  balance: "<gray>Votre solde: <yellow><balance>"
+  balance-other: "<gray>Solde de <white><player></white>: <yellow><balance>"
+  paid: "<green>Vous avez envoyé <yellow><amount></yellow> à <white><player></white>!"
+  received: "<green>Vous avez reçu <yellow><amount></yellow> de <white><player></white>!"
+  pay-usage: "<yellow>Usage: /pay <joueur> <montant>"
+  pay-self: "<red>Vous ne pouvez pas vous envoyer de l'argent!"
+  pay-failed: "<red>Le paiement a échoué!"
+  not-enough-money: "<red>Vous n'avez pas assez d'argent!"
+  invalid-amount: "<red>Montant invalide!"
+
+# Messages du shop
+shop:
+  title: "<gradient:#6366f1:#8b5cf6>🛒 Shop</gradient>"
+  balance-title: "<yellow>💰 Solde"
+  not-enough-money: "<red>Vous n'avez pas assez d'argent!"
+  inventory-full: "<red>Votre inventaire est plein!"
+  not-enough-items: "<red>Vous n'avez pas assez d'items!"
+  bought: "<green>Vous avez acheté <yellow><amount>x <item></yellow> pour <yellow><price></yellow>!"
+  sold: "<green>Vous avez vendu <yellow><amount>x <item></yellow> pour <yellow><price></yellow>!"
+
+# Messages des homes
+homes:
+  gui-title: "<gradient:#6366f1:#8b5cf6>🏠 Vos Homes</gradient>"
+  set: "<green>Home <yellow><name></yellow> créé!"
+  deleted: "<green>Home <yellow><name></yellow> supprimé!"
+  delete-failed: "<red>Impossible de supprimer le home!"
+  not-found: "<red>Home <yellow><name></yellow> introuvable!"
+  teleporting: "<yellow>Téléportation vers <name> dans <seconds> secondes..."
+  teleported: "<green>Téléporté vers <yellow><name></yellow>!"
+  teleport-cancelled: "<red>Téléportation annulée!"
+  teleport-failed: "<red>La téléportation a échoué!"
+  cooldown: "<red>Veuillez attendre <yellow><seconds></yellow> secondes!"
+  limit-reached: "<red>Vous avez atteint la limite de homes (<max>)!"
+  invalid-name: "<red>Nom de home invalide!"
+  name-too-long: "<red>Nom de home trop long!"
+  delete-usage: "<yellow>Usage: /delhome <nom>"
+
+# Messages des kits
+kits:
+  gui-title: "<gradient:#6366f1:#8b5cf6>🎁 Kits</gradient>"
+  received: "<green>Vous avez reçu le kit <yellow><kit></yellow>!"
+  not-found: "<red>Kit introuvable!"
+  no-permission: "<red>Vous n'avez pas accès à ce kit!"
+  cooldown: "<red>Ce kit sera disponible dans <yellow><time></yellow>!"
+  inventory-full: "<red>Votre inventaire est plein!"
+
+# Messages des quêtes
+quests:
+  gui-title: "<gradient:#6366f1:#8b5cf6>📋 Quêtes</gradient>"
+  completed: "<green>🎉 Quête terminée: <yellow><quest></yellow>!"
+  progress: "<gray>Progression: <yellow><current>/<total>"
+
+# Messages des statistiques
+stats:
+  gui-title: "<gradient:#6366f1:#8b5cf6>📊 Statistiques</gradient>"
+
+# Messages des claims
+claims:
+  created: "<green>Claim créé! Zone protégée: <yellow><area></yellow> blocs"
+  deleted: "<green>Claim supprimé!"
+  not-in-claim: "<red>Vous n'êtes pas dans un claim!"
+  not-owner: "<red>Vous n'êtes pas le propriétaire de ce claim!"
+  overlap: "<red>Ce claim chevauche un autre claim!"
+  too-small: "<red>Le claim est trop petit!"
+  too-big: "<red>Le claim est trop grand!"
+  limit-reached: "<red>Vous avez atteint la limite de claims!"
+
+# Messages anti-grief
+antigrief:
+  cannot-break: "<red>Vous ne pouvez pas casser de blocs ici!"
+  cannot-place: "<red>Vous ne pouvez pas placer de blocs ici!"
+  cannot-interact: "<red>Vous ne pouvez pas interagir ici!"
+  pvp-disabled: "<red>Le PvP est désactivé dans cette zone!"
+
+# Messages du chat
+chat:
+  cooldown: "<red>Veuillez attendre <yellow><seconds></yellow> secondes avant de parler!"
+  blocked: "<red>Votre message a été bloqué!"
+
+# Messages GUI
+gui:
+  previous-page: "<yellow>◀ Page précédente"
+  next-page: "<yellow>Page suivante ▶"
+  page-info: "<gray>Page <current>/<total>"
+  page-indicator: "<yellow>Page <current>/<total>"
+  close: "<red>Fermer"
+  back: "<gray>Retour"

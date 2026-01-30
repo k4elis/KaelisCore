@@ -1,0 +1,18 @@
+# Configuration des homes
+
+enabled: true
+
+# Limite de homes par défaut (sans permissions spéciales)
+default-limit: 1
+
+# Délai avant téléportation (en secondes, 0 = instantané)
+teleport-delay: 3
+
+# Cooldown entre téléportations (en secondes)
+teleport-cooldown: 5
+
+# Caractères autorisés dans les noms de homes (regex)
+name-pattern: "^[a-zA-Z0-9_-]+$"
+
+# Longueur maximum du nom
+max-name-length: 32

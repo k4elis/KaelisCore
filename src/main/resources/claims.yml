@@ -1,0 +1,31 @@
+# Configuration des claims (protection de terrain)
+
+enabled: true
+
+# Limites
+limits:
+  # Nombre maximum de claims par joueur
+  max-claims-per-player: 5
+  # Taille maximum d'un claim (en blocs²)
+  max-claim-size: 10000
+  # Taille minimum d'un claim (en blocs²)
+  min-claim-size: 100
+
+# Blocks de claim gagnés par heure de jeu
+claim-blocks-per-hour: 100
+
+# Flags par défaut pour les nouveaux claims
+default-flags:
+  pvp: false
+  mob-spawning: true
+  explosions: false
+  fire-spread: false
+
+# Visualisation des claims
+visualization:
+  # Matériel pour les coins
+  corner-material: GLOWSTONE
+  # Matériel pour les bordures
+  border-material: GOLD_BLOCK
+  # Durée d'affichage (en secondes)
+  duration: 30

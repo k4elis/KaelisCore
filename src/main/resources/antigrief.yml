@@ -1,0 +1,31 @@
+# Configuration Anti-grief
+
+enabled: true
+
+# Protéger les claims automatiquement
+protect-claims: true
+
+# Prévenir les explosions de mobs
+prevent-explosions: true
+
+# Prévenir la propagation du feu
+prevent-fire-spread: true
+
+# Prévenir le grief des Endermen
+prevent-enderman-grief: true
+
+# Prévenir les dégâts des Creepers
+prevent-creeper-damage: true
+
+# Prévenir les dégâts du Wither
+prevent-wither-damage: true
+
+# Blocs protégés (ne peuvent pas être détruits par explosions)
+protected-blocks:
+  - CHEST
+  - TRAPPED_CHEST
+  - ENDER_CHEST
+  - BEACON
+  - ENCHANTING_TABLE
+  - ANVIL
+  - BREWING_STAND

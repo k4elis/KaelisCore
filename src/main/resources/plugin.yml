@@ -1,0 +1,188 @@
+name: ${name}
+version: ${version}
+main: fr.kaelis.kaeliscore.KaelisCore
+api-version: "${apiVersion}"
+description: ${description}
+author: Kaelis
+website: https://github.com/k4elis/KaelisCore
+
+softdepend:
+  - Vault
+  - PlaceholderAPI
+  - LuckPerms
+
+permissions:
+  kaeliscore.admin:
+    description: Full admin access to KaelisCore
+    default: op
+  kaeliscore.economy.*:
+    description: All economy permissions
+    default: op
+  kaeliscore.economy.balance:
+    description: Check balance
+    default: true
+  kaeliscore.economy.pay:
+    description: Pay other players
+    default: true
+  kaeliscore.economy.shop:
+    description: Access shop
+    default: true
+  kaeliscore.homes.*:
+    description: All home permissions
+    default: op
+  kaeliscore.homes.set:
+    description: Set home
+    default: true
+  kaeliscore.homes.teleport:
+    description: Teleport to home
+    default: true
+  kaeliscore.homes.delete:
+    description: Delete home
+    default: true
+  kaeliscore.homes.limit.1:
+    description: 1 home limit
+    default: true
+  kaeliscore.homes.limit.3:
+    description: 3 homes limit
+    default: false
+  kaeliscore.homes.limit.5:
+    description: 5 homes limit
+    default: false
+  kaeliscore.homes.limit.unlimited:
+    description: Unlimited homes
+    default: op
+  kaeliscore.warps.*:
+    description: All warp permissions
+    default: op
+  kaeliscore.warps.use:
+    description: Use warps
+    default: true
+  kaeliscore.warps.create:
+    description: Create warps
+    default: op
+  kaeliscore.warps.delete:
+    description: Delete warps
+    default: op
+  kaeliscore.claims.*:
+    description: All claim permissions
+    default: op
+  kaeliscore.claims.create:
+    description: Create claims
+    default: true
+  kaeliscore.claims.manage:
+    description: Manage own claims
+    default: true
+  kaeliscore.claims.admin:
+    description: Admin claims
+    default: op
+  kaeliscore.kits.*:
+    description: All kit permissions
+    default: op
+  kaeliscore.kits.use:
+    description: Use kits
+    default: true
+  kaeliscore.kits.create:
+    description: Create kits
+    default: op
+  kaeliscore.chat.*:
+    description: All chat permissions
+    default: op
+  kaeliscore.chat.color:
+    description: Use color in chat
+    default: false
+  kaeliscore.chat.format:
+    description: Use formatting in chat
+    default: false
+  kaeliscore.quests.*:
+    description: All quest permissions
+    default: op
+  kaeliscore.quests.view:
+    description: View quests
+    default: true
+  kaeliscore.quests.admin:
+    description: Admin quests
+    default: op
+  kaeliscore.stats.*:
+    description: All stats permissions
+    default: op
+  kaeliscore.stats.view:
+    description: View own stats
+    default: true
+  kaeliscore.stats.others:
+    description: View others stats
+    default: false
+  kaeliscore.events.*:
+    description: All event permissions
+    default: op
+  kaeliscore.events.join:
+    description: Join events
+    default: true
+  kaeliscore.events.admin:
+    description: Admin events
+    default: op
+
+commands:
+  kaeliscore:
+    description: Main KaelisCore command
+    aliases: [kc, kcore]
+    permission: kaeliscore.admin
+  balance:
+    description: Check your balance
+    aliases: [bal, money]
+    permission: kaeliscore.economy.balance
+  pay:
+    description: Pay another player
+    permission: kaeliscore.economy.pay
+  shop:
+    description: Open the shop
+    permission: kaeliscore.economy.shop
+  economy:
+    description: Economy admin commands
+    aliases: [eco]
+    permission: kaeliscore.economy.admin
+  home:
+    description: Teleport to your home
+    aliases: [h]
+    permission: kaeliscore.homes.teleport
+  sethome:
+    description: Set your home
+    permission: kaeliscore.homes.set
+  delhome:
+    description: Delete your home
+    aliases: [removehome]
+    permission: kaeliscore.homes.delete
+  homes:
+    description: List your homes
+    permission: kaeliscore.homes.teleport
+  warp:
+    description: Teleport to a warp
+    aliases: [w]
+    permission: kaeliscore.warps.use
+  setwarp:
+    description: Create a warp
+    permission: kaeliscore.warps.create
+  delwarp:
+    description: Delete a warp
+    permission: kaeliscore.warps.delete
+  warps:
+    description: List all warps
+    permission: kaeliscore.warps.use
+  claim:
+    description: Claim commands
+    permission: kaeliscore.claims.create
+  kit:
+    description: Get a kit
+    aliases: [kits]
+    permission: kaeliscore.kits.use
+  quest:
+    description: Quest commands
+    aliases: [quests, q]
+    permission: kaeliscore.quests.view
+  stats:
+    description: View statistics
+    aliases: [statistics, profile]
+    permission: kaeliscore.stats.view
+  event:
+    description: Event commands
+    aliases: [events]
+    permission: kaeliscore.events.join

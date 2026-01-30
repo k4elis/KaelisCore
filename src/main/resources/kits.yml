@@ -1,0 +1,40 @@
+# Configuration des kits
+
+enabled: true
+
+kits:
+  starter:
+    name: "Kit de départ"
+    description: "Kit pour bien commencer l'aventure"
+    permission: "kaeliscore.kits.starter"
+    cooldown: 86400  # 24 heures en secondes
+    icon: CHEST
+    items:
+      - "WOODEN_SWORD:1"
+      - "WOODEN_PICKAXE:1"
+      - "WOODEN_AXE:1"
+      - "BREAD:16"
+      - "TORCH:32"
+  
+  daily:
+    name: "Kit quotidien"
+    description: "Récompense journalière"
+    permission: "kaeliscore.kits.daily"
+    cooldown: 86400
+    icon: CLOCK
+    items:
+      - "BREAD:8"
+      - "IRON_INGOT:3"
+      - "COAL:16"
+  
+  vip:
+    name: "Kit VIP"
+    description: "Kit exclusif pour les VIP"
+    permission: "kaeliscore.kits.vip"
+    cooldown: 43200  # 12 heures
+    icon: DIAMOND
+    items:
+      - "DIAMOND_SWORD:1"
+      - "DIAMOND_PICKAXE:1"
+      - "GOLDEN_APPLE:4"
+      - "EXPERIENCE_BOTTLE:16"
