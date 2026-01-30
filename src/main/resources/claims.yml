@@ -2,6 +2,10 @@
 
 enabled: true
 
+# Outil pour créer des claims (style GriefPrevention)
+# Clic droit avec cet outil pour définir les coins
+claim-tool: GOLDEN_SHOVEL
+
 # Limites
 limits:
   # Nombre maximum de claims par joueur
@@ -23,9 +27,9 @@ default-flags:
 
 # Visualisation des claims
 visualization:
-  # Matériel pour les coins
-  corner-material: GLOWSTONE
-  # Matériel pour les bordures
-  border-material: GOLD_BLOCK
   # Durée d'affichage (en secondes)
   duration: 30
+  # Couleur pour les claims du joueur (format RGB)
+  own-color: "0,255,0"
+  # Couleur pour les claims des autres
+  other-color: "255,255,0"

@@ -21,13 +21,21 @@
 - Homes illimités (configurable par permissions)
 - Téléportation avec délai et cooldown
 - GUI de gestion des homes
-- Système de warps serveur
+- **Système de warps serveur avec GUI**
+- Commandes `/warp`, `/setwarp`, `/delwarp`
+
+### 🚀 Téléportation
+- `/spawn` - Téléportation au spawn serveur
+- `/tpa <joueur>` - Demande de téléportation
+- `/tpaccept` / `/tpdeny` - Gérer les demandes
+- `/back` - Retourner à la dernière position
 
 ### 🛡️ Claims (Protection de terrain)
-- Protection par zone
+- **Mode houe dorée** (style GriefPrevention)
+- Protection par zone avec visualisation particules
 - Système de membres et rôles
-- Flags personnalisables (PvP, explosions, etc.)
-- Visualisation des claims
+- Flags personnalisables (PvP, explosions, feu)
+- Clic droit avec houe dorée pour créer des claims
 
 ### 🎁 Kits
 - Kits personnalisables
@@ -47,17 +55,30 @@
 - GUI de profil
 - Sync avec stats vanilla
 
+### 🏆 Système de Rangs
+- **Progression automatique** basée sur le temps de jeu, kills, quêtes
+- Rangs par défaut: Débutant → Apprenti → Avancé → Expert → Maître → Légende
+- Récompenses à chaque promotion
+- Intégration LuckPerms
+
+### 🎯 Scoreboard
+- **Sidebar en temps réel** avec infos joueur
+- Affiche: rang, solde, kills/deaths, temps de jeu
+- Personnalisable dans `scoreboard.yml`
+- Toggle avec commande
+
 ### 📋 Quêtes
 - Système de quêtes modulaire
 - Récompenses (argent, XP, items)
 - Progression persistante
 - GUI de quêtes
 
-### 🎉 Events
-- Events automatiques programmables
-- Drop Party
-- Double XP / Double Money
-- Extensible
+### 🎉 Events Automatiques
+- **Programmation horaire** des events
+- Drop Party (12h et 18h par défaut)
+- Double XP (14h et 20h par défaut)
+- Double Money (19h par défaut)
+- Extensible et personnalisable
 
 ### 🛡️ Anti-grief
 - Protection automatique des claims
@@ -65,11 +86,16 @@
 - Protection contre endermen/creepers
 - Détection de grief
 
-### 🤖 Intégrations
-- **Vault** - Économie et permissions
-- **PlaceholderAPI** - Placeholders complets
-- **LuckPerms** - Préfixes/suffixes chat
-- **Discord** - Bot avec bridge chat
+### 🤖 Bot Discord
+- Bridge chat bidirectionnel
+- **Commandes avancées:**
+  - `!status` - Statut complet du serveur
+  - `!players` - Joueurs en ligne
+  - `!leaderboard <type>` - Classements
+  - `!stats <joueur>` - Stats d'un joueur
+  - `!events` - Événements actifs
+  - `!link <code>` - Lier son compte
+  - `!help` - Aide
 
 ## 📦 Installation
 
@@ -87,34 +113,68 @@ Tous les fichiers de configuration sont dans `plugins/KaelisCore/`:
 | `config.yml` | Configuration générale |
 | `database.yml` | Base de données (MySQL/SQLite) |
 | `economy.yml` | Économie et shop |
-| `homes.yml` | Système de homes |
+| `homes.yml` | Système de homes et téléportation |
 | `claims.yml` | Protection de terrain |
 | `kits.yml` | Kits disponibles |
 | `chat.yml` | Configuration du chat |
 | `quests.yml` | Quêtes et missions |
 | `stats.yml` | Statistiques |
-| `events.yml` | Events automatiques |
+| `events.yml` | Events automatiques programmés |
+| `ranks.yml` | Système de rangs automatique |
+| `scoreboard.yml` | Sidebar personnalisable |
 | `antigrief.yml` | Protection anti-grief |
 | `discord.yml` | Bot Discord |
 | `messages.yml` | Tous les messages (100% personnalisables) |
 
 ## 📝 Commandes
 
+### Économie
 | Commande | Description | Permission |
 |----------|-------------|------------|
 | `/balance` | Voir son solde | `kaeliscore.economy.balance` |
 | `/pay <joueur> <montant>` | Payer un joueur | `kaeliscore.economy.pay` |
 | `/shop` | Ouvrir le shop | `kaeliscore.economy.shop` |
 | `/eco <give/take/set> <joueur> <montant>` | Admin économie | `kaeliscore.economy.admin` |
+
+### Homes
+| Commande | Description | Permission |
+|----------|-------------|------------|
 | `/home [nom]` | Téléportation home | `kaeliscore.homes.teleport` |
 | `/sethome [nom]` | Créer un home | `kaeliscore.homes.set` |
 | `/delhome <nom>` | Supprimer un home | `kaeliscore.homes.delete` |
 | `/homes` | Liste des homes (GUI) | `kaeliscore.homes.teleport` |
+
+### Warps
+| Commande | Description | Permission |
+|----------|-------------|------------|
+| `/warp [nom]` | Téléportation warp | `kaeliscore.warps.use` |
+| `/setwarp <nom>` | Créer un warp | `kaeliscore.warps.create` |
+| `/delwarp <nom>` | Supprimer un warp | `kaeliscore.warps.delete` |
+
+### Téléportation
+| Commande | Description | Permission |
+|----------|-------------|------------|
+| `/spawn` | Téléportation au spawn | `kaeliscore.teleport.spawn` |
+| `/setspawn` | Définir le spawn | `kaeliscore.admin` |
+| `/tpa <joueur>` | Demander une téléportation | `kaeliscore.teleport.tpa` |
+| `/tpaccept` | Accepter une demande | `kaeliscore.teleport.tpa` |
+| `/tpdeny` | Refuser une demande | `kaeliscore.teleport.tpa` |
+| `/back` | Dernière position | `kaeliscore.teleport.back` |
+
+### Autres
+| Commande | Description | Permission |
+|----------|-------------|------------|
 | `/kit [nom]` | Obtenir un kit | `kaeliscore.kits.use` |
 | `/quest` | Voir les quêtes (GUI) | `kaeliscore.quests.view` |
 | `/stats [joueur]` | Voir les stats (GUI) | `kaeliscore.stats.view` |
 | `/claim` | Commandes de claim | `kaeliscore.claims.create` |
 | `/kc reload` | Recharger la config | `kaeliscore.admin` |
+
+### Claims avec houe dorée 🪙
+1. Équipez une **houe en or**
+2. Clic droit sur le premier coin
+3. Clic droit sur le second coin
+4. Le claim est créé ! Les bordures s'affichent avec des particules
 
 ## 🏷️ PlaceholderAPI
 
@@ -127,6 +187,7 @@ Tous les fichiers de configuration sont dans `plugins/KaelisCore/`:
 %kaeliscore_deaths%           - Morts
 %kaeliscore_kdr%              - Ratio K/D
 %kaeliscore_mob_kills%        - Mobs tués
+%kaeliscore_rank%             - Rang actuel
 %kaeliscore_stat_<key>%       - Stat personnalisée
 ```
 
@@ -154,7 +215,7 @@ cd KaelisCore
 
 - [Vault](https://github.com/MilkBowl/VaultAPI) - Pour l'intégration économie externe
 - [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) - Pour les placeholders
-- [LuckPerms](https://luckperms.net/) - Pour les préfixes/suffixes
+- [LuckPerms](https://luckperms.net/) - Pour les préfixes/suffixes et rangs
 
 ## 📜 License
 

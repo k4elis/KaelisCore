@@ -73,14 +73,18 @@ stats:
 
 # Messages des claims
 claims:
-  created: "<green>Claim créé! Zone protégée: <yellow><area></yellow> blocs"
+  created: "<green>Claim créé! Zone protégée: <yellow><area></yellow> blocs²"
   deleted: "<green>Claim supprimé!"
   not-in-claim: "<red>Vous n'êtes pas dans un claim!"
   not-owner: "<red>Vous n'êtes pas le propriétaire de ce claim!"
   overlap: "<red>Ce claim chevauche un autre claim!"
-  too-small: "<red>Le claim est trop petit!"
-  too-big: "<red>Le claim est trop grand!"
+  too-small: "<red>Le claim est trop petit (minimum: <min> blocs²)!"
+  too-big: "<red>Le claim est trop grand (maximum: <max> blocs²)!"
   limit-reached: "<red>Vous avez atteint la limite de claims!"
+  corner1-set: "<yellow>Premier coin défini à <white>X:<x> Z:<z></white>. Clic droit pour définir le second coin."
+  different-worlds: "<red>Les deux coins doivent être dans le même monde!"
+  creation-cancelled: "<gray>Création du claim annulée."
+  info: "<yellow>Claim de <white><owner></white> - <white><area></white> blocs² - <white><members></white> membres"
 
 # Messages anti-grief
 antigrief:
@@ -102,3 +106,69 @@ gui:
   page-indicator: "<yellow>Page <current>/<total>"
   close: "<red>Fermer"
   back: "<gray>Retour"
+
+# Messages des warps
+warps:
+  gui-title: "<gradient:#6366f1:#8b5cf6>🌍 Warps</gradient>"
+  teleporting: "<yellow>Téléportation vers <name> dans <seconds> secondes..."
+  teleported: "<green>Téléporté vers <yellow><name></yellow>!"
+  teleport-cancelled: "<red>Téléportation annulée!"
+  teleport-failed: "<red>La téléportation a échoué!"
+  not-found: "<red>Warp <yellow><name></yellow> introuvable!"
+  no-permission: "<red>Vous n'avez pas accès à ce warp!"
+  cooldown: "<red>Veuillez attendre <yellow><seconds></yellow> secondes!"
+  created: "<green>Warp <yellow><name></yellow> créé!"
+  create-failed: "<red>Impossible de créer le warp!"
+  deleted: "<green>Warp <yellow><name></yellow> supprimé!"
+  delete-failed: "<red>Impossible de supprimer le warp!"
+  already-exists: "<red>Un warp nommé <yellow><name></yellow> existe déjà!"
+  invalid-name: "<red>Nom de warp invalide! Utilisez uniquement des lettres, chiffres, - et _"
+  name-too-long: "<red>Nom de warp trop long (max 32 caractères)!"
+  setwarp-usage: "<yellow>Usage: /setwarp <nom> [permission] [catégorie]"
+  delwarp-usage: "<yellow>Usage: /delwarp <nom>"
+
+# Messages de téléportation
+teleport:
+  cooldown: "<red>Veuillez attendre <yellow><seconds></yellow> secondes!"
+  cancelled: "<red>Téléportation annulée - vous avez bougé!"
+  failed: "<red>La téléportation a échoué!"
+
+# Messages spawn
+spawn:
+  teleporting: "<yellow>Téléportation au spawn dans <seconds> secondes..."
+  teleported: "<green>Téléporté au spawn!"
+  set: "<green>Spawn défini à votre position!"
+
+# Messages TPA
+tpa:
+  usage: "<yellow>Usage: /tpa <joueur>"
+  sent: "<green>Demande de téléportation envoyée à <yellow><player></yellow>!"
+  received: "<yellow><player></yellow> souhaite se téléporter à vous! <green>/tpaccept</green> ou <red>/tpdeny</red>"
+  accepted: "<green>Vous avez accepté la demande de <yellow><player></yellow>!"
+  denied: "<red><player></red> a refusé votre demande de téléportation!"
+  denied-target: "<red>Demande de téléportation refusée!"
+  teleporting: "<yellow>Téléportation vers <player> dans <seconds> secondes..."
+  teleported: "<green>Téléporté vers <yellow><player></yellow>!"
+  no-pending: "<red>Vous n'avez aucune demande de téléportation en attente!"
+  self: "<red>Vous ne pouvez pas vous envoyer une demande!"
+  already-pending: "<red>Vous avez déjà une demande en cours!"
+  requester-offline: "<red>Le joueur s'est déconnecté!"
+  expired: "<red>La demande de téléportation a expiré!"
+
+# Messages back
+back:
+  teleporting: "<yellow>Téléportation vers votre dernière position..."
+  teleported: "<green>Téléporté à votre dernière position!"
+  no-location: "<red>Aucune position précédente enregistrée!"
+
+# Messages des rangs
+ranks:
+  promoted: "<green>🎉 Félicitations! Vous êtes maintenant <yellow><rank></yellow>!"
+  broadcast: "<gradient:#FFD700:#FFA500>🏆 <player> vient d'atteindre le rang <rank>!</gradient>"
+  next-rank: "<gray>Prochain rang: <yellow><rank>"
+  max-rank: "<gold>Vous avez atteint le rang maximum!"
+
+# Messages du scoreboard
+scoreboard:
+  enabled: "<green>Scoreboard activé!"
+  disabled: "<red>Scoreboard désactivé!"

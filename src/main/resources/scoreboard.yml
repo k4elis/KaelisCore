@@ -1,0 +1,42 @@
+# Configuration du scoreboard
+
+enabled: true
+
+# Intervalle de mise à jour (en secondes)
+update-interval: 5
+
+# Titre du scoreboard
+title: "<gradient:#6366f1:#8b5cf6><bold>✦ KaelisCore ✦</bold></gradient>"
+
+# Lignes du scoreboard
+# Placeholders disponibles:
+# %player_name% - Nom du joueur
+# %player_balance% - Solde formaté
+# %player_balance_raw% - Solde brut
+# %player_kills% - Kills PvP
+# %player_deaths% - Morts
+# %player_kdr% - Ratio K/D
+# %player_mob_kills% - Mobs tués
+# %player_playtime% - Temps de jeu formaté
+# %player_rank% - Rang actuel
+# %player_rank_prefix% - Préfixe du rang
+# %online% - Joueurs en ligne
+# %max_players% - Slots maximum
+lines:
+  - ""
+  - "<gray>👤 Joueur"
+  - "<white>  %player_name%"
+  - ""
+  - "<gray>🏆 Rang"
+  - "<white>  %player_rank%"
+  - ""
+  - "<gray>💰 Solde"
+  - "<yellow>  %player_balance%"
+  - ""
+  - "<gray>⚔ Combat"
+  - "<white>  <green>%player_kills%</green>K / <red>%player_deaths%</red>D"
+  - ""
+  - "<gray>⏱ Temps de jeu"
+  - "<aqua>  %player_playtime%"
+  - ""
+  - "<yellow>play.monserveur.fr"

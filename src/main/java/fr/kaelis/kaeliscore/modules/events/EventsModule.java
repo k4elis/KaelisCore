@@ -11,6 +11,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitTask;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -21,6 +23,7 @@ public class EventsModule extends AbstractModule {
 
     private final Map<String, ServerEvent> activeEvents = new ConcurrentHashMap<>();
     private final Map<UUID, Set<String>> eventParticipants = new ConcurrentHashMap<>();
+    private final List<ScheduledEvent> scheduledEvents = new ArrayList<>();
     private BukkitTask schedulerTask;
 
     public EventsModule(KaelisCore plugin) {
@@ -29,10 +32,11 @@ public class EventsModule extends AbstractModule {
 
     @Override
     public void onEnable() {
-        // Start event scheduler
-        int checkInterval = getConfig().getInt("scheduler.check-interval", 300); // 5 minutes default
+        loadScheduledEvents();
+        
+        // Start event scheduler - check every minute
         schedulerTask = Bukkit.getScheduler().runTaskTimer(plugin, this::checkScheduledEvents, 
-            20L * 60, 20L * checkInterval);
+            20L * 60, 20L * 60);
     }
 
     @Override
@@ -47,9 +51,80 @@ public class EventsModule extends AbstractModule {
         }
     }
 
+    private void loadScheduledEvents() {
+        var config = getConfig().getConfigurationSection("scheduled-events");
+        if (config == null) return;
+
+        for (String eventId : config.getKeys(false)) {
+            var eventConfig = config.getConfigurationSection(eventId);
+            if (eventConfig == null) continue;
+
+            String typeStr = eventConfig.getString("type", "drop_party");
+            EventType type = EventType.valueOf(typeStr.toUpperCase());
+            List<String> times = eventConfig.getStringList("times");
+            int duration = eventConfig.getInt("duration", 10);
+            boolean enabled = eventConfig.getBoolean("enabled", true);
+
+            if (enabled && !times.isEmpty()) {
+                scheduledEvents.add(new ScheduledEvent(eventId, type, times, duration));
+                plugin.getLogger().info("Scheduled event: " + eventId + " at " + times);
+            }
+        }
+    }
+
     private void checkScheduledEvents() {
-        // Check for scheduled events
-        // This would read from config and start events at specific times
+        LocalTime now = LocalTime.now();
+        String currentTime = now.format(DateTimeFormatter.ofPattern("HH:mm"));
+
+        for (ScheduledEvent scheduled : scheduledEvents) {
+            if (scheduled.times().contains(currentTime) && !isEventTypeActive(scheduled.type())) {
+                // Start the event
+                plugin.getLogger().info("Starting scheduled event: " + scheduled.id());
+                switch (scheduled.type()) {
+                    case DROP_PARTY -> {
+                        // Use spawn or world spawn
+                        Location loc = Bukkit.getWorlds().get(0).getSpawnLocation();
+                        List<ItemStack> items = generateDropPartyItems();
+                        startDropParty(loc, scheduled.duration(), items);
+                    }
+                    case DOUBLE_XP -> startDoubleXP(scheduled.duration());
+                    case DOUBLE_MONEY -> startDoubleMoney(scheduled.duration());
+                    default -> {}
+                }
+            }
+        }
+    }
+
+    private List<ItemStack> generateDropPartyItems() {
+        List<ItemStack> items = new ArrayList<>();
+        Random random = new Random();
+        
+        // Common items
+        for (int i = 0; i < 20; i++) {
+            items.add(new ItemStack(Material.DIAMOND, random.nextInt(3) + 1));
+            items.add(new ItemStack(Material.IRON_INGOT, random.nextInt(10) + 5));
+            items.add(new ItemStack(Material.GOLD_INGOT, random.nextInt(5) + 1));
+            items.add(new ItemStack(Material.EMERALD, random.nextInt(3) + 1));
+        }
+        
+        // Rare items
+        for (int i = 0; i < 5; i++) {
+            items.add(new ItemStack(Material.DIAMOND_BLOCK, 1));
+            items.add(new ItemStack(Material.NETHERITE_INGOT, 1));
+        }
+        
+        // Equipment
+        items.add(new ItemStack(Material.DIAMOND_SWORD, 1));
+        items.add(new ItemStack(Material.DIAMOND_PICKAXE, 1));
+        items.add(new ItemStack(Material.DIAMOND_HELMET, 1));
+        items.add(new ItemStack(Material.DIAMOND_CHESTPLATE, 1));
+        
+        Collections.shuffle(items);
+        return items;
+    }
+
+    private boolean isEventTypeActive(EventType type) {
+        return activeEvents.values().stream().anyMatch(e -> e.type() == type);
     }
 
     /**
@@ -61,20 +136,25 @@ public class EventsModule extends AbstractModule {
         activeEvents.put(eventId, event);
 
         // Broadcast start
-        plugin.getModuleManager().getModule(fr.kaelis.kaeliscore.modules.chat.ChatModule.class)
-            .broadcastPrefixed("<gold><bold>DROP PARTY!</bold></gold> <yellow>Head to spawn for free items!");
+        broadcastEvent("<gold><bold>🎉 DROP PARTY!</bold></gold> <yellow>Rendez-vous au spawn pour des items gratuits!");
+
+        // Play announcement sound
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            player.playSound(player.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
+        }
 
         // Schedule item drops
         Random random = new Random();
-        int itemsPerDrop = Math.max(1, items.size() / (duration / 2));
+        List<ItemStack> itemsCopy = new ArrayList<>(items);
+        int itemsPerDrop = Math.max(1, itemsCopy.size() / (duration / 2));
         
         for (int i = 0; i < duration; i += 2) {
             final int index = i;
             Bukkit.getScheduler().runTaskLater(plugin, () -> {
                 if (!activeEvents.containsKey(eventId)) return;
                 
-                for (int j = 0; j < itemsPerDrop && !items.isEmpty(); j++) {
-                    ItemStack item = items.remove(random.nextInt(items.size()));
+                for (int j = 0; j < itemsPerDrop && !itemsCopy.isEmpty(); j++) {
+                    ItemStack item = itemsCopy.remove(random.nextInt(itemsCopy.size()));
                     Location dropLoc = location.clone().add(
                         random.nextDouble() * 10 - 5,
                         random.nextDouble() * 3,
@@ -107,8 +187,11 @@ public class EventsModule extends AbstractModule {
         ServerEvent event = new ServerEvent(eventId, EventType.DOUBLE_XP, null, durationMinutes * 60, data);
         activeEvents.put(eventId, event);
 
-        plugin.getModuleManager().getModule(fr.kaelis.kaeliscore.modules.chat.ChatModule.class)
-            .broadcastPrefixed("<gold><bold>DOUBLE XP!</bold></gold> <yellow>Earn double XP for " + durationMinutes + " minutes!");
+        broadcastEvent("<gold><bold>⚡ DOUBLE XP!</bold></gold> <yellow>Gagnez le double d'XP pendant " + durationMinutes + " minutes!");
+
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1f, 1f);
+        }
 
         // Schedule end
         Bukkit.getScheduler().runTaskLater(plugin, () -> endEvent(eventId), durationMinutes * 60 * 20L);
@@ -125,10 +208,22 @@ public class EventsModule extends AbstractModule {
         ServerEvent event = new ServerEvent(eventId, EventType.DOUBLE_MONEY, null, durationMinutes * 60, data);
         activeEvents.put(eventId, event);
 
-        plugin.getModuleManager().getModule(fr.kaelis.kaeliscore.modules.chat.ChatModule.class)
-            .broadcastPrefixed("<gold><bold>DOUBLE MONEY!</bold></gold> <yellow>Earn double money for " + durationMinutes + " minutes!");
+        broadcastEvent("<gold><bold>💰 DOUBLE MONEY!</bold></gold> <yellow>Gagnez le double d'argent pendant " + durationMinutes + " minutes!");
+
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_YES, 1f, 1f);
+        }
 
         Bukkit.getScheduler().runTaskLater(plugin, () -> endEvent(eventId), durationMinutes * 60 * 20L);
+    }
+
+    private void broadcastEvent(String message) {
+        var chatModule = plugin.getModuleManager().getModule(fr.kaelis.kaeliscore.modules.chat.ChatModule.class);
+        if (chatModule != null) {
+            chatModule.broadcastPrefixed(message);
+        } else {
+            Bukkit.broadcast(plugin.getMessageManager().parse(plugin.getMessageManager().get("prefix") + message));
+        }
     }
 
     /**
@@ -167,8 +262,7 @@ public class EventsModule extends AbstractModule {
             case TREASURE_HUNT -> "Treasure Hunt";
         };
 
-        plugin.getModuleManager().getModule(fr.kaelis.kaeliscore.modules.chat.ChatModule.class)
-            .broadcastPrefixed("<gray>The <yellow>" + eventName + " <gray>event has ended!");
+        broadcastEvent("<gray>L'événement <yellow>" + eventName + " <gray>est terminé!");
     }
 
     /**
@@ -197,4 +291,5 @@ public class EventsModule extends AbstractModule {
     }
 
     public record ServerEvent(String id, EventType type, Location location, int duration, Map<String, Object> data) {}
+    public record ScheduledEvent(String id, EventType type, List<String> times, int duration) {}
 }

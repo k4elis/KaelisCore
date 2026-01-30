@@ -12,6 +12,10 @@ import fr.kaelis.kaeliscore.commands.homes.SetHomeCommand;
 import fr.kaelis.kaeliscore.commands.kits.KitCommand;
 import fr.kaelis.kaeliscore.commands.quests.QuestCommand;
 import fr.kaelis.kaeliscore.commands.stats.StatsCommand;
+import fr.kaelis.kaeliscore.commands.teleport.*;
+import fr.kaelis.kaeliscore.commands.warps.DelWarpCommand;
+import fr.kaelis.kaeliscore.commands.warps.SetWarpCommand;
+import fr.kaelis.kaeliscore.commands.warps.WarpCommand;
 import org.bukkit.command.PluginCommand;
 
 import java.util.HashMap;
@@ -44,6 +48,19 @@ public class CommandManager {
         registerCommand("sethome", new SetHomeCommand(plugin));
         registerCommand("delhome", new DelHomeCommand(plugin));
         registerCommand("homes", new HomesCommand(plugin));
+        
+        // Warp commands
+        registerCommand("warp", new WarpCommand(plugin));
+        registerCommand("setwarp", new SetWarpCommand(plugin));
+        registerCommand("delwarp", new DelWarpCommand(plugin));
+        
+        // Teleport commands
+        registerCommand("spawn", new SpawnCommand(plugin));
+        registerCommand("setspawn", new SetSpawnCommand(plugin));
+        registerCommand("tpa", new TpaCommand(plugin));
+        registerCommand("tpaccept", new TpAcceptCommand(plugin));
+        registerCommand("tpdeny", new TpDenyCommand(plugin));
+        registerCommand("back", new BackCommand(plugin));
         
         // Kit command
         registerCommand("kit", new KitCommand(plugin));

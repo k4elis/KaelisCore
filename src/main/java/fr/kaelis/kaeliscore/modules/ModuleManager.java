@@ -9,7 +9,11 @@ import fr.kaelis.kaeliscore.modules.events.EventsModule;
 import fr.kaelis.kaeliscore.modules.homes.HomesModule;
 import fr.kaelis.kaeliscore.modules.kits.KitsModule;
 import fr.kaelis.kaeliscore.modules.quests.QuestsModule;
+import fr.kaelis.kaeliscore.modules.ranks.RanksModule;
+import fr.kaelis.kaeliscore.modules.scoreboard.ScoreboardModule;
 import fr.kaelis.kaeliscore.modules.stats.StatsModule;
+import fr.kaelis.kaeliscore.modules.teleport.TeleportModule;
+import fr.kaelis.kaeliscore.modules.warps.WarpsModule;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +35,8 @@ public class ModuleManager {
         // Register all modules
         registerModule(new EconomyModule(plugin));
         registerModule(new HomesModule(plugin));
+        registerModule(new WarpsModule(plugin));
+        registerModule(new TeleportModule(plugin));
         registerModule(new ClaimsModule(plugin));
         registerModule(new KitsModule(plugin));
         registerModule(new ChatModule(plugin));
@@ -38,6 +44,8 @@ public class ModuleManager {
         registerModule(new QuestsModule(plugin));
         registerModule(new EventsModule(plugin));
         registerModule(new AntiGriefModule(plugin));
+        registerModule(new RanksModule(plugin));
+        registerModule(new ScoreboardModule(plugin));
 
         // Enable modules
         for (AbstractModule module : modules.values()) {

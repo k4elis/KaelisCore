@@ -5,14 +5,38 @@ enabled: true
 # Planificateur d'events
 scheduler:
   # Intervalle de vérification (en secondes)
-  check-interval: 300
+  check-interval: 60
 
-# Events programmés
+# Events programmés automatiques
 scheduled-events:
-  # Format: "HH:mm" -> type
-  # Example:
-  # "12:00": "double_xp"
-  # "18:00": "drop_party"
+  drop_party_midi:
+    type: drop_party
+    enabled: true
+    times:
+      - "12:00"
+    duration: 5  # minutes
+  
+  drop_party_soir:
+    type: drop_party
+    enabled: true
+    times:
+      - "18:00"
+    duration: 5
+  
+  double_xp_weekend:
+    type: double_xp
+    enabled: true
+    times:
+      - "14:00"
+      - "20:00"
+    duration: 30
+  
+  double_money_daily:
+    type: double_money
+    enabled: true
+    times:
+      - "19:00"
+    duration: 30
 
 # Durées par défaut (en minutes)
 default-durations:
@@ -29,3 +53,5 @@ drop-party:
     - "IRON_INGOT:10-20"
     - "EMERALD:1-5"
     - "GOLDEN_APPLE:1-2"
+    - "NETHERITE_INGOT:1"
+    - "ENCHANTED_GOLDEN_APPLE:1"

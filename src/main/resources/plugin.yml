@@ -63,6 +63,30 @@ permissions:
   kaeliscore.warps.delete:
     description: Delete warps
     default: op
+  kaeliscore.warps.bypass-cooldown:
+    description: Bypass warp cooldown
+    default: op
+  kaeliscore.warps.bypass-delay:
+    description: Bypass warp delay
+    default: op
+  kaeliscore.teleport.*:
+    description: All teleport permissions
+    default: op
+  kaeliscore.teleport.spawn:
+    description: Teleport to spawn
+    default: true
+  kaeliscore.teleport.tpa:
+    description: Use TPA
+    default: true
+  kaeliscore.teleport.back:
+    description: Use /back
+    default: true
+  kaeliscore.teleport.bypass-cooldown:
+    description: Bypass teleport cooldown
+    default: op
+  kaeliscore.teleport.bypass-delay:
+    description: Bypass teleport delay
+    default: op
   kaeliscore.claims.*:
     description: All claim permissions
     default: op
@@ -120,6 +144,9 @@ permissions:
   kaeliscore.events.admin:
     description: Admin events
     default: op
+  kaeliscore.scoreboard.toggle:
+    description: Toggle scoreboard
+    default: true
 
 commands:
   kaeliscore:
@@ -186,3 +213,23 @@ commands:
     description: Event commands
     aliases: [events]
     permission: kaeliscore.events.join
+  spawn:
+    description: Teleport to spawn
+    permission: kaeliscore.teleport.spawn
+  setspawn:
+    description: Set the spawn location
+    permission: kaeliscore.admin
+  tpa:
+    description: Request teleportation to a player
+    permission: kaeliscore.teleport.tpa
+  tpaccept:
+    description: Accept a TPA request
+    aliases: [tpyes]
+    permission: kaeliscore.teleport.tpa
+  tpdeny:
+    description: Deny a TPA request
+    aliases: [tpno]
+    permission: kaeliscore.teleport.tpa
+  back:
+    description: Teleport to your last location
+    permission: kaeliscore.teleport.back

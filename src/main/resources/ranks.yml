@@ -1,0 +1,108 @@
+# Configuration des rangs
+
+enabled: true
+
+# Progression automatique
+auto-progress: true
+
+# Intervalle de vérification (en secondes)
+check-interval: 300
+
+# Annoncer les promotions sur le serveur
+broadcast-promotions: true
+
+# Rangs disponibles
+ranks:
+  debutant:
+    name: "Débutant"
+    prefix: "<gray>[Débutant]</gray> "
+    permission: "kaeliscore.rank.debutant"
+    priority: 0
+    requirements:
+      playtime: 0  # minutes
+      kills: 0
+      balance: 0
+      quests: 0
+    rewards:
+      money: 0
+      commands: []
+  
+  apprenti:
+    name: "Apprenti"
+    prefix: "<green>[Apprenti]</green> "
+    permission: "kaeliscore.rank.apprenti"
+    priority: 1
+    requirements:
+      playtime: 600  # 10 heures
+      kills: 10
+      balance: 1000
+      quests: 3
+    rewards:
+      money: 500
+      commands:
+        - "give %player% diamond 3"
+  
+  avance:
+    name: "Avancé"
+    prefix: "<aqua>[Avancé]</aqua> "
+    permission: "kaeliscore.rank.avance"
+    priority: 2
+    requirements:
+      playtime: 3000  # 50 heures
+      kills: 50
+      balance: 10000
+      quests: 10
+    rewards:
+      money: 2000
+      commands:
+        - "give %player% diamond 10"
+        - "lp user %player% permission set kaeliscore.homes.limit.3"
+  
+  expert:
+    name: "Expert"
+    prefix: "<gold>[Expert]</gold> "
+    permission: "kaeliscore.rank.expert"
+    priority: 3
+    requirements:
+      playtime: 12000  # 200 heures
+      kills: 200
+      balance: 50000
+      quests: 25
+    rewards:
+      money: 5000
+      commands:
+        - "give %player% netherite_ingot 5"
+        - "lp user %player% permission set kaeliscore.homes.limit.5"
+  
+  maitre:
+    name: "Maître"
+    prefix: "<light_purple>[Maître]</light_purple> "
+    permission: "kaeliscore.rank.maitre"
+    priority: 4
+    requirements:
+      playtime: 30000  # 500 heures
+      kills: 500
+      balance: 200000
+      quests: 50
+    rewards:
+      money: 10000
+      commands:
+        - "give %player% netherite_ingot 20"
+        - "lp user %player% permission set kaeliscore.homes.limit.unlimited"
+        - "lp user %player% permission set kaeliscore.chat.color"
+  
+  legende:
+    name: "Légende"
+    prefix: "<gradient:#FFD700:#FFA500>[Légende]</gradient> "
+    permission: "kaeliscore.rank.legende"
+    priority: 5
+    requirements:
+      playtime: 60000  # 1000 heures
+      kills: 1000
+      balance: 1000000
+      quests: 100
+    rewards:
+      money: 50000
+      commands:
+        - "give %player% enchanted_golden_apple 16"
+        - "lp user %player% permission set kaeliscore.teleport.bypass-delay"
